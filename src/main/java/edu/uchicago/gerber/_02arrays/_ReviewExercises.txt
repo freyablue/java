@@ -14,7 +14,157 @@ Since Java5, you can even specify a variable number of arguments aka varargs whi
 Notice that the varargs parameter "String... strNickNames" must be listed last.  Calling this method would look something like this:
  String[] strReturnValues = someMethod(99, "Jim", "Jamie", "James", "Jamey", "Jimmy", "Jimbo");
 
+R5.8 Pseudocode
+function number_translate(str t):
+    result = ""
+    English_letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    initialize dictionary d
+    for i from 0 to English_letters.length-1 do:
+        value = (English_letters[i]-'A')//3 +2
+        d[English_letters[i]] = value
+
+    for char in t do:
+        if char is found in d.keys():
+            result = result + str(d[char])
+        else:
+            result = result + str(char)
+    return result
 
 
 
+R5.10 Variable scope
+in the main function, i and b(line5 and 6) are local variables of this function.
+In function f(int i), n(line 12) is a local variable(method level scope) of this function.
+In function g(int a),b,n and i(line 19,20,22) are local variable(method level) of this function.
 
+g(10) = 1+1+1+2+2+2+2+2+3=16
+g(10)+10 = 26
+So the program prints 26
+
+
+R5.14 Pass by value versus pass by reference
+Java is passed by value and not passed by reference. Here, the falseSwap method doesn't works.
+In falseWap: we are changing values of int a and int b but they are just copies of 3 and 4 reference locations,
+so there is no change in values of x=3 and y=4  and falseSwap method doesn't swap the contents of x and y.
+
+
+R6.3 Considering loops
+a. 25
+b. 13
+c. 12
+d. This is not a correct code. index out of bound when i==10
+e. 11
+f. 25
+g. 12
+h. -1
+
+R6.10 Enhanced for-loop
+a.  for (float value:values) { total = total + value; }
+
+b.
+float new_values[] = Arrays.copyOfRange(values, 1, values.length);
+for(float value:new_values){total = total + value;}
+
+c. for (float value:values) {
+   if (value == target) {
+       int index = Arrays.asList(values).indexOf(value);
+       return index;
+       }
+}
+
+R6.23 Computing runs
+Pseudocode:
+function run_max_length (Array arrays):
+    count = 1
+    max_count = 0
+    return 0 if arrays.length<1
+    start = arrays[0]
+    for i from 1 to arrays.length-1 do:
+        if arrays[i]==start:
+            count = count+1
+        else:
+            count = 1
+            start = arrays[i]
+        max_count = max(max_count,count)
+    return max_count
+
+
+R6.29 Multi-dimensional arrays
+1.Fill all entries with 0:
+for(int i=0;i<ROWS;i++){
+    for(int j=0;j<COLUMNS;j++){
+        values[i][j] = 0
+    }
+}
+2. Fill elements alternately with 0s and 1s in a checkerboard pattern
+for (int i = 0; i < ROWS; i++) {
+    for (int j = 0; j < COLUMNS; j++) {
+        values[i][j] = (i + j) % 2 == 0 ? 0 : 1;
+    }
+}
+3. Fill only the elements at the top and bottom row with zeroes.
+ for (int j = 0; j < ROWS; j++) {
+            if(j==0||j==ROWS-1){
+                 Arrays.fill(values[j],0);
+            }
+}
+4. Compute the sum of all element
+int sum_a = 0
+for (int i = 0; i < ROWS; i++) {
+    for (int j = 0; j < COLUMNS; j++) {
+        sum_a+=values[i][j];
+    }
+}
+5. Print the array in tabular form.
+for(int i=0; i<ROWS; I++) {
+       for(int j=0; j<COLUMNS; j++){
+           System.out.print(values[i][j] + " ");
+       }
+       System.out.println();
+}
+
+R6.34 Understanding arrays.
+a. No, ArrayList can have multiple types
+b. Yes
+c. No, Array lists can contain strings as element
+d. Yes, through add() and remove()
+e. No. Array lists can contain strings as element
+f. No. e.g. by adding and removing.
+
+R7.1 Exceptions
+If you try to open a file for reading that doesn’t exist, then a FileNotFoundException e is thrown.
+If you try to open a file for writing that doesn’t exist, then a file with length 0 is created.
+
+R7.6 Throwing and catching What is the difference between throwing an exception and catching an exception?
+When you throw an exception, the exception handler occurs and then you skip the next statement
+When you catch an exception, you handle the exception and if there is no exception handler, then an error message
+occurs and then your program terminates.
+
+R7.7 Checked versus unchecked
+Checked exceptions normally used for cases that are unpreventable but is predictable and can be recovered while unchecked exceptions normally
+used for cases that are unrecoverable. For instance, if some condition outside control has caused the operation to fail, then a checked
+exception tells the caller to anticipate this failure.
+A checked exception requires a throw exception and it is checked at compile time. An unchecked exception will not be checked at compile time.
+A checked exception is used to identify environment while an unchecked exception is used to identify programming failures.
+
+R7.8 Exceptions philosophy in Java
+IndexOutOfBoundsException is an unchecked exceptions and it is a subclass of Runtime Exception(unchecked exception).
+An unchecked exception(runtime exception) is commonly used to help identify your programming mistake and no need to declare it.
+
+R7.11 What is an exception object
+It can handle the error through printing out a particular message that tells the user more details about the failure and asks them to fix it.
+For instance, in Java, we can do this through statements: System.out.println(e) or e.printStackTrace()
+
+R7.15 Scanner exceptions. Explain why these are either checked or unchecked.
+nextInt method can throw three exceptions:
+1.InputMismatchException: next token doesn't match regular expression or is out of range
+2. NoSuchElementException: input is exhausted
+3. IllegalStateException: the scanner is closed
+they are unchecked exceptions. Because unchecked exception in java includes run time exception and error exception and these exceptions
+do not belongs to either of it.
+
+next method can throw two exceptions:
+1. NoSuchElementException- It will thrown this Exception if no more tokens are found.
+2. IllegalStateException- It will thrown this Exception if the innvocation is done after Scanner is closed.
+they are unchecked exceptions. Because unchecked exception in java includes run time exception and error exception and these exceptions
+do not belongs to either of it.
