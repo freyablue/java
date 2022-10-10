@@ -5,12 +5,13 @@ import java.util.*;
 public class E6_16 {
     public static List<Double> output=new ArrayList<>();
     public static List<Long> nums=new ArrayList<>();
-    public static void read_and_print(String filename){
+    public static void read_and_print(){
         BufferedReader b = null;
         try{
             Integer m;
             String line;
-            b= new BufferedReader(new FileReader(filename));
+//            b= new BufferedReader(new FileReader(filename));
+            b = new BufferedReader(new InputStreamReader(System.in));
             Double max = 0.0;
             if ((line = b.readLine())!=null){
                 String[] l =line.split(" ");
@@ -60,6 +61,7 @@ public class E6_16 {
         }
     }
     public static void main(String[] args) {
+        read_and_print();
 //        String file = "C:\\Users\\yijia chen\\Desktop\\projava-freyablue-master\\src\\main\\java\\edu\\uchicago\\gerber\\_02arrays\\test_16";
 //        read_and_print(file);
     }
