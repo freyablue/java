@@ -24,7 +24,7 @@ public class Cannonball {
     public void shoot(double angle, double v){
         x_v = v*Math.cos(Math.toRadians(angle));
         y_v = v*Math.sin(Math.toRadians(angle));
-        while(y_pos>0){
+        while(y_pos>=0){
             move(0.1);
             double x = getX_pos();
             double y =getY_pos();
