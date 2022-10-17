@@ -1,6 +1,72 @@
 #########################################################################
 # Use this file to answer Review Exercises from the Big Java textbook
 #########################################################################
+R8.1 Encapsulation
+Encapsulation is the act of providing a public interface and hiding the implementation details.
+Encapsulation enables changes in the implementation without affecting users of a class.
+
+R8.4 Public interface: What is the public interface of a class? How does it differ from the implementation of a class?
+A public interface of a class specifies functionality without disclosing any details about implementation of the functionality.
+While the implementation of a class is how the methods accomplish their tasks to support its functionality.
+
+R8.7 Instance versus static: What is an instance method, and how does it differ from a static method
+Instance methods are bound to the class instance and perform a set of actions on the data/value given by the object variables..
+An instance of the class should be created before using an instance method.
+Static method, however, can be called without generating an object of its class.  It can be used by itself without
+referencing to the instance of the class.
+
+R8.8 Mutator and accessor: What is a mutator method? What is an accessor method?
+A mutator method is the method that changes the state of an object. It modifies the object on which it operates.
+While an accessor method queries the object for some information(access the property of an object) without
+changing the object on which it operates. Accessor method act as a mediator to access the private
+variable by methods outside a class or some other class.
+
+
+R8.9 Implicit parameter: What is an implicit parameter? How does it differ from an explicit parameter?
+The object on which an instance method is applied is the implicit parameter.
+ The implicit parameter is passed by specifying the reference or variable of the object before the name of the method.
+ Implicit parameters are not defined within a method declaration because they are implied by the class the method is in.
+While an explicit parameter is passed when specifying the parameter in the parenthesis of a method call. It is defined within
+a method declaration.
+
+R8.10 Implicit parameter:  How many implicit parameters can an instance method have? How many implicit
+parameters can a static method have? How many explicit parameters can an instance method have?
+Every instance method has exactly one implicit parameter and zero or more explicit parameters.
+A static method has no implicit parameter.
+
+R8.12 Constructors: How many constructors can a class have? Can you have a class with no constructors?
+If a class has more than one constructor, which of them gets called?
+In fact a class can have any number of constructors. A class can have multiple constructors or no constructor.
+When a class has more than one constructor,the compiler chooses the constructor that matches the arguments
+that you supply. Fot instance, if we define two constructors: public BankAccount() and public BankAccount(double initialBalance),
+If we have "BankAccount lisasAccount = new BankAccount(499.95);", we uses BankAccount(double) constructor
+If we have "BankAccount joesAccount = new BankAccount();", we uses BankAccount() constructor.
+
+R8.16 Instance variables:Instance variables are “hidden” by declaring them as private, but they aren’t hidden
+very well at all. Anyone can read the class declaration. Explain to what extent the private reserved word hides
+the private implementation of a class
+
+The private reserved word prevents a programmer using the class from manipulating instance variables
+except through the methods of that class.
+
+
+R8.19 The this reference:  What is the this reference? Why would you use it?
+In a method, the "this reference" refers to the implicit parameter. Every instance method
+receives the implicit parameter in a variable called this.
+By using this reference, we can make it clear the variables we used are instance variables and not explicit variables.
+Besides, it can make program easier to read. In constructor, if both a local variable and an instance variable
+ have the same name, you can access the local variable by its name, and instance variable with the this reference.
+ So we can eliminate the confusion between class attributes and parameters with the same name.
+
+
+
+R8.20 Zero, null, false, empty String:  What is the difference between the number zero, the null reference, the value false,
+                                       and the empty string?
+A number zero means the value itself is zero
+An empty string is a string instance of zero length.
+A null reference has no value at all and we are looking at a empty/blank cell.
+A value false has a value that means 'off' and it is the opposite of true.
+
 
 
 
