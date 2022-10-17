@@ -5,13 +5,12 @@ import java.util.Scanner;
 public class Cannonball_Driver {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Cannonball thisBall = new Cannonball(20);
-        System.out.println("Starting angle: ");
+        Cannonball ball = new Cannonball(0);
+        System.out.println("Input angle: ");
         double alpha = in.nextInt();
-        System.out.println("Starting velocity ");
+        System.out.println("Input starting velocity ");
         double v = in.nextInt();
-        thisBall.shoot(alpha,v);
+        ball.shoot(alpha,v);
         in.close();
-
     }
 }
