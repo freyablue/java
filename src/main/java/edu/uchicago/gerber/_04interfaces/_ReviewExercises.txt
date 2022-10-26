@@ -1,6 +1,60 @@
 #########################################################################
-# Use this file to answer Review Exercises from the Big Java textbook
+# use this file to answer review exercises from the big java textbook
 #########################################################################
+
+r9.1 superclas and subclass
+a.employee is the superclass and manager is the subclass
+b.student is the superclass and graduate student is the subclass
+c. person is the superclass and  student is the subclass
+d. employee is a superclass and  professor is the subclass
+e. bankaccount is the superclass and  checkingaccount is the subclass
+f. vehicle is the superclass and  car is the subclass
+g. vehicle is the superclass and minivan is the subclass
+h. car is the superclass and minivan is the subclass
+i. vehicle is the superclass and truck is the subclass
+
+r9.2 superclass and subclass
+this is redundant and not useful since we have known that toaster, carvacuum, traveliron in the store are all small appliances.
+we would like to use superclass if it also contains large appliances.
+
+r9.4 savingsaccount
+it should override the withdraw() method,
+
+r9.6 sandwich
+a: correct since x is superclass and y is the subclass
+b: wrong since y is the subclass and superclass object x can not pointed by subclass reference.
+c: wrong. again superclass object can not be pointed by subclass reference.
+d: correct.
+
+r9.7 inheretence -use the uml diagram tool in intellij and indicate to the grader where uml file is located
+
+r9.8 inheretence -use the uml diagram tool in intellij and indicate to the grader where uml file is located
+r9.9 inheretence -use the uml diagram tool in intellij and indicate to the grader where uml file is located
+
+r9.10 casting :how does a cast such as (bankaccount) x differ from a cast of number values such as (int) x?
+a cast operator is used to indicate the acknowledgment or acceptance of a risk
+taken by the statement.in the context of interfaces, a cast is used to convert from an interface type(measurable) to a class type(bankaccount).
+ while numbers(such as int x) is used to accept the risk of a loss of precision, with
+objects it indicates the acceptance of the risk of a thrown exception.
+
+r9.11 instanceof operator
+a. system.out instanceof printstream. correct
+b. system.out instanceof outputstream. correct.
+c. system.out instanceof logstream. wrong, invalid type comparison. inconvertible types.
+d. system.out instanceof object. correct
+e. system.out instanceof closeable. correct
+f. system.out instanceof writer. wrong, invalid type comparison. can not say java.io.printstream' to 'java.io.writer'
+
+r9.14 edible interface
+
+a. e = sub;  legal. as sandwich class implements edible interface.
+b. sub = e; . no. cannot do without casting.
+c. sub = (sandwich) e;  legal,  casting.
+d. sub = (sandwich) cerealbox; no. rectangle doesn't implements edible.
+e. e = cerealbox;  no. rectangle doesn't implements edible.
+f. e = (edible) cerealbox;  legal
+g. e = (rectangle) cerealbox; no, won't compile.
+h. e = (rectangle) null; no. you can't assign a rectangle to an edible since they are unrelated types.
 
 
 
