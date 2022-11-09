@@ -1,6 +1,89 @@
 #########################################################################
-# Use this file to answer Review Exercises from the Big Java textbook
+# use this file to answer review exercises from the big java textbook
 #########################################################################
+
+r12.1 oo analysis and design: list the steps in the process of object-oriented design that this chapter recommends for student use.
+start the development process by gathering and documenting program requirements.
+use crc cards to find classes, responsibilities, and collaborators.
+use uml diagrams to record class relationships.
+use javadoc comments (with the method bodies left blank) to record the behavior of classes.
+after completing the design, implement your classes.
+
+r12.2 oo analysis and design: give a rule of thumb for how to find classes when designing a program
+use javadoc comments (with the method bodies left blank) to record the behavior of classes.
+then search for nouns in the problem description and build classes upon those nouns.
+
+r12.3 oo analysis and design: give a rule of thumb for how to find methods when designing a program.
+check each block in the uml diagram for the methods in a class.(each block represents a class and
+below class name contains the methods in this class).
+
+r12.8 relationships: write crc cards for the coin and cashregister classes described in section 12.1.3.
+
+cashregister
+——————————————————————————
+enterpayment    | coin
+
+
+coin
+——————————————————————————
+getvalue    | cashregister
+getname     |
+
+
+
+r12.9 crc quiz: write crc cards for the quiz and question classes in section 12.2.2.
+
+quiz
+——————————————————————————
+addquestion         | question
+presentquestion     |
+
+
+question
+——————————————————————————
+settext        | choicequestion
+setanswer      |
+checkanswer    |
+display        |
+
+
+r12.10 uml quiz: draw a uml diagram for the quiz, question, and choicequestion classes. the quiz
+class is described in section 12.2.2.
+
+
+
+r12.11 crc cards
+
+country
+——————————————————————————
+getarea           | countrycompare
+getpopulation     |
+getdensity        |
+
+countrycompare
+——————————————————————————
+getlargestarea           | country
+getlargestpopulation     |
+getlargestdensity        |
+
+
+r12.13
+a class coin to define type coin(name,value);
+a class product to define type product(name,price,stock);
+a class vendingmachine for all operations, including insertcoin(), calculatetotalcoins(),removeallcoins(), check if sufficientamount()
+deductgiven(), and deductallamount().
+a class vendingmachineread() for reading in scanner and create corresponding, new vendingmachine();
+
+
+r12.14
+a class employee to define type employee(name, salary);
+a class salary to define type salary(worked_hours, pay_per_hour,date)
+a class operation for calculating salary for each employee.
+
+
+r12.15 ulm diagram
+
+
 
 
 
