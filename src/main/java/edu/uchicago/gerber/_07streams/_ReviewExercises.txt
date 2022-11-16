@@ -2,6 +2,86 @@
 # Use this file to answer Review Exercises from the Big Java textbook
 #########################################################################
 
+R13.1 Terms
+Recursion: It occurs when a thing is defined in terms of itself or of its type.
+Iteration: the action or a process of iterating or repeating,It is the
+repetition of a sequence of computer instructions a specified number of times or until a condition is met
+Infinite Recursion: It occurs when a recursion never reaches a base case.
+ Infinite Recursion occurs when the recursion does not terminate after a finite number of recursive calls.
+Recursive Helper method: It is a method that continuously call itself and terminates until it reaches base case.
+
+R13.2 Smallest value: Outline, but do not implement, a recursive solution for finding the smallest value in an array
+1.the function takes an array as input,then set base case: iF the current array length is 1 then the minimum is array[0]
+and return. Else minimum = min(array[len-1], function(array,len-1)) and return it. Finally after recursion, we will get
+the minimum of the whole array.
+
+
+R13.4 Sort array of numbers:Outline, but do not implement, a recursive solution for sorting an array of numbers.
+ Hint: First find the smallest value in the array
+ Fun Sort(arr,start,end):
+    when start==end:
+        return arr
+    if start< end:
+         arr[start] = min(arr[start],Sort(arr,start+1,size))
+
+
+
+
+R13.6 Exponents recursively: Write a recursive definition of x^n
+Func power(x,n):
+  if(n>0):
+     return x*power(x,n-1)
+  return 1
+
+
+R13.8 Factorial recursively
+Func factorial(n):
+  if(n==1)
+      return 1
+  return n*factorial(n-1)
+
+
+R19.1 operations on Stream<String>
+a. .filter(str->str.chatAt(0)=='a').count()
+b. a's result.filter(str->str.length()>10).count()
+c. string ss=stream.map(str->str.toString());
+   int count= 0;
+   while (getline(inputFile, ss))
+   if(ss[0]=='a' && strlen(ss)>10)
+       count++;
+   if(count>=100)  return true
+   return false
+R19.3 How to read Java8
+The first one is to firstly get all words with length>10 and then get the first 100 words and then count numbers.
+While the second one is to get the first 100 words and only get words with length>10 in these 100 words and finally count numbers.
+
+R19.6 Transforming values:How do you turn a Stream<Double> into a Stream<String>, with each number turned
+into the equivalent string? How do you turn it back into a Stream<Double>?
+.map(dou->Double.toString(dou))
+.map(str->Double.parseDouble(str))
+
+R19.11 Terminal operations: List all terminal operations on object streams and primitive-type streams that have
+been discussed in this chapter.
+java.util.stream.DoubleStream
+java.util.stream.IntStream
+java.util.stream.LongStream
+java.util.stream.Stream<T>
+
+R19.12 Collectors:List all collectors that were introduced in this chapter
+java.util.stream.Collectors
+averagingDouble, averagingInt, averagingLong
+counting
+groupingBy
+joining
+maxBy
+minBy
+summingDouble, summingInt, summingLong
+toList
+toSet
+
+
+
+
 
 
 
