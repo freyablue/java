@@ -41,6 +41,8 @@ public class MyGamePanel extends JPanel{
     private MyBullet[] bullets = {}; 
     private Plane plane;
 	private int itv = 10;
+	private int bIndex = 0; 
+	private int enemyIndex = 0; 
 
 	
     private static final int S = 0; //start
@@ -174,57 +176,51 @@ public class MyGamePanel extends JPanel{
         this.addMouseMotionListener(l); // mouse slide
 
         timer = new Timer(); 
-        timer.schedule(new TimerTask() {
-            @Override
+		TimerTask tk = new TimerTask() {
+			@Override
             public void run() {
                 if (state == R) { 
-                    enterAction(); 
-                    stepAction(); 
+                    enterNew(); 
+                    move(); 
                     shootAction();
-                    bangAction(); 
-                    outOfBoundsAction(); 
+                    hitCollision();
+                    outOfBounds(); 
                     checkGameOverAction(); 
                 }
                 repaint(); 
-            }
-
-        }, itv,itv);
+            }		
+		};
+		timer.schedule(tk, itv,itv);
     }
 
-    int flyEnteredIndex = 0; 
-
-    public void enterAction() {
-        flyEnteredIndex++;
-        if (flyEnteredIndex % 40 == 0) { 
+	//add new enemy
+    public void enterNew() {
+        enemyIndex+=1;
+        if (enemyIndex % 40 == 0) { 
             FlyObject obj = new EnemyPlane(); 
             Enemys = Arrays.copyOf(Enemys, Enemys.length + 1);
             Enemys[Enemys.length - 1] = obj;
         }
     }
 
-    public void stepAction() {
+    public void move() {
+		plane.step(); 
         for (FlyObject f:Enemys) { 
             f.step();
         }
-
         for (MyBullet b:bullets) { 
             b.step();
-        }
-        plane.step(); 
+        }    
     }
 
-    public void flyingStepAction() {
-        for (FlyObject f:Enemys) {
-            f.step();
-        }
-    }
-
-    int shootIndex = 0; 
+    
 
     public void shootAction() {
-        shootIndex++;
-        if (shootIndex % 30 == 0) { 
+        bIndex+=1;
+        if (bIndex % 40 == 0) { 
             MyBullet[] bs = plane.shoot(); 
+			List bs_list = Arrays.asList(bs);
+			//add new generated bullets to the array
             bullets = Arrays.copyOf(bullets, bullets.length + bs.length); 
             System.arraycopy(bs, 0, bullets, bullets.length - bs.length,
                     bs.length); 
@@ -232,42 +228,36 @@ public class MyGamePanel extends JPanel{
     }
 
     
-    public void bangAction() {
+    public void hitCollision() {
         for (MyBullet b:bullets) { 
-            bang(b); 
+            hit(b); 
         }
     }
 
    
-    public void outOfBoundsAction() {
-        int index = 0; 
-        FlyObject[] flyingLives = new FlyObject[Enemys.length]; 
-        for (FlyObject f:Enemys) {
-            if (!f.checkBounds()) {
-                flyingLives[index++] = f; 
-            }
-        }
-        Enemys = Arrays.copyOf(flyingLives, index); 
-
-        index = 0; 
-        MyBullet[] bulletLives = new MyBullet[bullets.length];
+    public void outOfBounds() {
+		int index = 0; 
+        MyBullet[] newbullets= new MyBullet[bullets.length];
         for (MyBullet b:bullets) {
             if (!b.checkBounds()) {
-                bulletLives[index++] = b;
+                newbullets[index++] = b;
             }
         }
-        bullets = Arrays.copyOf(bulletLives, index); 
+        bullets = Arrays.copyOf(newbullets, index); 
+
+        index = 0; 
+        FlyObject[] newenemys = new FlyObject[Enemys.length]; 
+        for (FlyObject f:Enemys) {
+            if (!f.checkBounds()) {
+                newenemys[index++] = f; 
+            }
+        }
+        Enemys = Arrays.copyOf(newenemys, index); 
+
     }
 
     public void checkGameOverAction() {
-        if (isGameOver()) {
-            state = O; 
-        }
-    }
-
-    public boolean isGameOver() {
-
-        for (int i = 0; i < Enemys.length; i++) {
+		for (int i = 0; i < Enemys.length; i++) {
             int index = -1;
 			FlyObject obj = Enemys[i];
             if (plane.Collision(obj)) { 
@@ -283,26 +273,28 @@ public class MyGamePanel extends JPanel{
                 Enemys = Arrays.copyOf(Enemys, Enemys.length - 1); 
             }
         }
+		Boolean b = plane.getLife() <= 0;
+		if(b){
+			state = 3;
+		}
 
-        return plane.getLife() <= 0;
     }
 
     
-    public void bang(MyBullet bullet) {
+    public void hit(MyBullet bullet) {
         int index = -1; 
         for (int i = 0; i < Enemys.length; i++) {
             FlyObject obj = Enemys[i];
             if (obj.shootHit(bullet)) { 
                 index = i; 
+				score+=1;
                 break;
             }
         }
-        if (index != -1) { 
-            FlyObject one = Enemys[index]; 
-
-            FlyObject temp = Enemys[index]; 
+        if (index>=0) { 
+            FlyObject curr = Enemys[index]; 
             Enemys[index] = Enemys[Enemys.length - 1];
-            Enemys[Enemys.length - 1] = temp;
+            Enemys[Enemys.length - 1] = curr;
 
             Enemys = Arrays.copyOf(Enemys, Enemys.length - 1); 
 
